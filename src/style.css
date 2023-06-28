@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Geologica&display=swap');
+body{
+    background-color: #fffb10;
+    background-image: linear-gradient(90deg, #fffb10 0%, #b7ca5d 46%, #dece2b 100%);
+    font-family: 'Geologica', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+h1{
+    font-weight: bold;
+    font-size: 70px;
+}
+h2{
+    font-size: 55px;
+    font-weight: normal;
+}
