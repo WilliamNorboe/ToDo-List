@@ -1,32 +1,6 @@
 import './style.css'
 import {todo, project} from './factories.js'
-// const todo = () => {
-//      let title;
-//      let description;
-//      let dueDate;
-//      let priority;
-//      let notes;
-//      let completed;
-//      return{title, 
-//         description, 
-//         dueDate, 
-//         priority, 
-//         notes, 
-//         completed,
-//     };
-// };
-
-// const project = () => {
-//     let title;
-//     let description;
-//     let todos = [];
-//     return{title,
-//         title, 
-//         description,
-//         todos, 
-//     };
-// };
-
+import {loadProjects} from './loadProjects.js'
 
 let contentDIV = document.querySelector("#content");
 
@@ -42,7 +16,17 @@ contentDIV.appendChild(titleH2);
 let defaultProject = project();
 defaultProject.title = "Default";
 defaultProject.description = "I am a default Project!";
+let defaultTodo = todo();
+defaultTodo.title = "Default Todo";
+defaultTodo.dueDate = "5/27"; 
+
+defaultProject.todos = [defaultTodo, defaultTodo];
 let projects = [defaultProject];
+projects.push(defaultProject);
+
+loadProjects(projects);
+
+
 
 
 

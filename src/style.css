@@ -1,4 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Geologica&display=swap');
+
+*{
+    box-sizing: border-box;
+}
 body{
     background-color: #fffb10;
     background-image: linear-gradient(90deg, #fffb10 0%, #b7ca5d 46%, #dece2b 100%);
@@ -12,4 +16,30 @@ h1{
 h2{
     font-size: 55px;
     font-weight: normal;
+}
+
+.projects{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 500px);
+    gap: 10px;
+}
+
+.project{
+    background-color: blanchedalmond;
+    border-radius: 12px;
+    padding: 10px;
+}
+
+.projectTitle{
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.projectDes{
+    font-size: 25px;
+}
+
+.todo{
+    display: flex;
+    justify-content: space-between;
 }
