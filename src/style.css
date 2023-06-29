@@ -7,27 +7,59 @@ body{
     background-color: #fffb10;
     background-image: linear-gradient(90deg, #fffb10 0%, #b7ca5d 46%, #dece2b 100%);
     font-family: 'Geologica', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background: url('./notebook.jpg') no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+#content{
+    /* display: flex;
+    flex-direction: column;
+    align-items: center; */
+    
+}
+
+
+#content>button{
+    height: 100px;
+    font-size: 40px;
+    padding: 20px;
+    margin-bottom: 20px;
 }
 
 h1{
     font-weight: bold;
     font-size: 70px;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    font-family: sans; color: grey;
+    text-align: center;
 }
 h2{
     font-size: 55px;
     font-weight: normal;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    font-family: sans; color: grey;
 }
 
 .projects{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, 500px);
+    display: flex;
+    /* grid-template-columns: repeat(auto-fill, 100%); */
+    justify-content: center;
+    flex-wrap: wrap;
     gap: 10px;
+    width: 100%;
+    /* align-content: center; */
+    /* justify-items: center;
+    align-items: center; */
 }
 
 .project{
     background-color: blanchedalmond;
     border-radius: 12px;
     padding: 10px;
+    border: 3px solid black;
 }
 
 ul{
@@ -42,7 +74,7 @@ ul{
     display: flex;
     justify-content: space-between;
     width: 100%;
-    word-break: break-all;
+    word-break: break-word;
     /* height: 100px;
     color: blue; */
 }
@@ -56,7 +88,7 @@ ul{
 .pinfo{
     display: flex;
     flex-direction: column;
-    overflow-wrap: break-all;
+    /* overflow-wrap: break-word; */
     flex-wrap: wrap;
     width: 100%;
     gap: 10px
@@ -65,14 +97,21 @@ ul{
 .todo{
     display: flex;
     justify-content: space-between;
-    word-break: break-all;
+    word-break: break-word;
     flex-wrap: wrap;
     width: 100%;
-    gap: 10px
+    gap: 10px;
+    font-size: 18px;
+    border: 1px solid black;
 }
 
+.todo button{
+    justify-self: flex-end;
+    
+}
 .todo2{
     display: flex;
+    border: 1px solid black;
     flex-direction: column;
     gap: 5px;
     width: 100%;
@@ -95,4 +134,9 @@ textarea{
     max-width: 100%;
     width: 100%;
     height: 100px;
+}
+
+button{
+    border-radius: 100px;
+    background-color: antiquewhite;
 }
