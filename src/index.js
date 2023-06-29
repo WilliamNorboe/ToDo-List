@@ -20,7 +20,13 @@ let defaultTodo = todo();
 defaultTodo.title = "Default Todo";
 defaultTodo.dueDate = "5/27"; 
 
-defaultProject.todos = [defaultTodo, defaultTodo];
+let defaultTodo2 = todo();
+defaultTodo2.title = "Default Todo";
+defaultTodo2.dueDate = "5/27"; 
+
+
+defaultProject.todos = [defaultTodo, defaultTodo2];
+
 let projects = [defaultProject];
 projects.push(defaultProject);
 

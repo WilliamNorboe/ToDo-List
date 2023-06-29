@@ -1,11 +1,13 @@
 
+
+
 const todo = () => {
-    let title;
-    let description;
-    let dueDate;
-    let priority;
-    let notes;
-    let completed;
+    let title = "";
+    let description = "";
+    let dueDate = "";
+    let priority = "";
+    let notes = "";
+    let completed = false;
     return{title, 
        description, 
        dueDate, 
@@ -16,8 +18,8 @@ const todo = () => {
 };
 
 const project = () => {
-   let title;
-   let description;
+   let title = "";
+   let description = "";
    let todos = [];
    return{title,
        title, 
