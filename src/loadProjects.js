@@ -1,4 +1,7 @@
 import {todo, project} from './factories.js'
+import {edit} from './editTodo.js'
+import {view} from './viewProject.js'
+import {editProject} from './editProjects.js'
 
 let contentDIV = document.querySelector('#content');
 
@@ -8,6 +11,10 @@ function loadProjects(projects){
     contentDIV.appendChild(projectsDIV);
 
     for(let i = 0; i < projects.length; ++i){
+
+        let projectInfo = document.createElement("p");
+        projectInfo.classList.add("pinfo");
+
         let curProject = document.createElement("div");
         curProject.classList.add("project");
 
@@ -15,12 +22,24 @@ function loadProjects(projects){
         ProjectTitleDiv.classList.add("projectTitle");
         ProjectTitleDiv.textContent = projects[i].title;
 
+        let editProjectBtn = document.createElement("button");
+        editProjectBtn.textContent = "Edit Project";
+        ProjectTitleDiv.appendChild(editProjectBtn);
+
+        let removeProjectBtn = document.createElement("button");
+        removeProjectBtn.textContent = "Remove Project";
+        ProjectTitleDiv.appendChild(removeProjectBtn);
+
         let ProjectDesDiv = document.createElement("div");
         ProjectDesDiv.classList.add("projectDes");
-        ProjectDesDiv.textContent = projects[i].description;
+        ProjectDesDiv.textContent ="-" + projects[i].description;
 
-        curProject.appendChild(ProjectTitleDiv);
-        curProject.appendChild(ProjectDesDiv);
+        editProjectBtn.addEventListener("click", ()=>{editProject(projects, i, projectInfo)});
+        removeProjectBtn.addEventListener("click", ()=> removeProject(projects, i));
+        projectInfo.appendChild(ProjectTitleDiv);
+        projectInfo.appendChild(ProjectDesDiv);
+
+        curProject.appendChild(projectInfo);
 
 
         let list = document.createElement("ul");
@@ -38,19 +57,33 @@ function loadProjects(projects){
             todoDueDate.textContent = "Due: " + projects[i].todos[j].dueDate;
             todoDiv.appendChild(todoDueDate);
 
-            let expandButton = document.createElement("button");
-            expandButton.textContent = "Expand";
-            todoDiv.appendChild(expandButton);
+            let editButton = document.createElement("button");
+            editButton.textContent = "Edit";
+            todoDiv.appendChild(editButton);
+            editButton.addEventListener("click", ()=>{edit(todoDiv, projects, i, j)});
 
-            expandButton.addEventListener("click", ()=>{expand(todoDiv, projects, i, j)});
+            let viewButton = document.createElement("button");
+            viewButton.textContent = "View";
+            todoDiv.appendChild(viewButton);
+            viewButton.addEventListener("click", ()=>{view(todoDiv, projects, i, j)});
+
+            let removeButton = document.createElement("button");
+            removeButton.textContent = "Remove";
+            todoDiv.appendChild(removeButton);
+            removeButton.addEventListener("click", ()=>{removeTodo(todoDiv, projects, i, j)});
+
             list.appendChild(todoDiv);
         }
-
         curProject.appendChild(list);
 
+        let addTodoBtn = document.createElement("button");
+        addTodoBtn.textContent = "Add Todo";
+        curProject.append(addTodoBtn);
+        addTodoBtn.addEventListener("click", ()=>{addTodo(projects, i)});
         projectsDIV.appendChild(curProject);
     }
 }
+
 
 function removeAllChildNodes(parent) {
     while (parent.firstChild) {
@@ -58,71 +91,33 @@ function removeAllChildNodes(parent) {
     }
 }
 
-function expand(todoDiv, projects, i, j){
-    removeAllChildNodes(todoDiv);
-    todoDiv.classList.remove("todo");
-    todoDiv.classList.add("todo2");
+function addTodo(projects, i){
+    let addedTodo = todo();
+    addedTodo.title = "New Todo";
+    addedTodo.dueDate = "NA";
 
-    let tLabel = document.createElement("label");
-    tLabel.textContent = "Title: ";
-    todoDiv.appendChild(tLabel);
-    let title = document.createElement("input");
-    title.type = "text";
-    title.value = projects[i].todos[j].title;
-    todoDiv.appendChild(title);
-
-    let dLabel = document.createElement("label");
-    dLabel.textContent = "Description: ";
-    todoDiv.appendChild(dLabel);
-    let description = document.createElement("textarea");
-    description.value = projects[i].todos[j].description;
-    todoDiv.appendChild(description);
-
-    let ddLabel = document.createElement("label");
-    ddLabel.textContent = "Due Date: ";
-    todoDiv.appendChild(ddLabel);
-    let dueDate = document.createElement("input");
-    dueDate.type = "text";
-    dueDate.value = projects[i].todos[j].dueDate;
-    todoDiv.appendChild(dueDate);
-
-    let nLabel = document.createElement("label");
-    nLabel.textContent = "Notes: ";
-    todoDiv.appendChild(nLabel);
-    let notes = document.createElement("textarea");
-    notes.value = projects[i].todos[j].notes;
-    todoDiv.appendChild(notes);
-
-    let cLabel = document.createElement("label");
-    cLabel.textContent = "Completed: ";
-    todoDiv.appendChild(cLabel);
-    let completed = document.createElement("input");
-    completed.type = "checkbox";
-    completed.checked = projects[i].todos[j].completed;
-    todoDiv.appendChild(completed);
-
-    let saveButton = document.createElement("button");
-    saveButton.textContent = "Save";
-    saveButton.addEventListener("click", () => {
-        projects[i].todos[j].title = title.value;
-        projects[i].todos[j].description = description.value;
-        projects[i].todos[j].dueDate = dueDate.value;
-        projects[i].todos[j].notes = notes.value;
-        projects[i].todos[j].completed = completed.checked;
-
-        document.querySelector(".projects").remove();
-        loadProjects(projects);
-    });
-    todoDiv.appendChild(saveButton);
+    projects[i].todos.push(addedTodo);
+    document.querySelector(".projects").remove();
+    localStorage.setItem("projects", JSON.stringify(projects));
+    loadProjects(projects);
 }
 
-// let title;
-// let description;
-// let dueDate;
-// let priority;
-// let notes;
-// let completed;
+
+function removeTodo(todoDiv, projects, i, j){
+    projects[i].todos.splice(j, 1);
+    document.querySelector(".projects").remove();
+    localStorage.setItem("projects", JSON.stringify(projects));
+    loadProjects(projects);
+}
+
+function removeProject(projects, i){
+    projects.splice(i, 1);
+    document.querySelector(".projects").remove();
+    localStorage.setItem("projects", JSON.stringify(projects));
+    loadProjects(projects);
+}
 
 export{
     loadProjects,
+    removeAllChildNodes,
 }

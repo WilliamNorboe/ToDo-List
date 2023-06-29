@@ -1,6 +1,3 @@
-
-
-
 const todo = () => {
     let title = "";
     let description = "";
@@ -18,7 +15,7 @@ const todo = () => {
 };
 
 const project = () => {
-   let title = "";
+   let title;
    let description = "";
    let todos = [];
    return{title,
