@@ -22,13 +22,20 @@ function loadProjects(projects){
         ProjectTitleDiv.classList.add("projectTitle");
         ProjectTitleDiv.textContent = projects[i].title;
 
+
+
+        let projectButtons = document.createElement('div');
+        projectButtons.classList.add("projectButtons");
+
         let editProjectBtn = document.createElement("button");
         editProjectBtn.textContent = "Edit Project";
-        ProjectTitleDiv.appendChild(editProjectBtn);
+        projectButtons.appendChild(editProjectBtn);
 
         let removeProjectBtn = document.createElement("button");
         removeProjectBtn.textContent = "Remove Project";
-        ProjectTitleDiv.appendChild(removeProjectBtn);
+        projectButtons.appendChild(removeProjectBtn);
+
+        ProjectTitleDiv.appendChild(projectButtons);
 
         let ProjectDesDiv = document.createElement("div");
         ProjectDesDiv.classList.add("projectDes");
@@ -57,20 +64,26 @@ function loadProjects(projects){
             todoDueDate.textContent = "Due: " + projects[i].todos[j].dueDate;
             todoDiv.appendChild(todoDueDate);
 
+
+            let todoButtons = document.createElement('div');
+            todoButtons.classList.add("todoButtons");
+
             let editButton = document.createElement("button");
             editButton.textContent = "Edit";
-            todoDiv.appendChild(editButton);
+            todoButtons.appendChild(editButton);
             editButton.addEventListener("click", ()=>{edit(todoDiv, projects, i, j)});
 
             let viewButton = document.createElement("button");
             viewButton.textContent = "View";
-            todoDiv.appendChild(viewButton);
+            todoButtons.appendChild(viewButton);
             viewButton.addEventListener("click", ()=>{view(todoDiv, projects, i, j)});
 
             let removeButton = document.createElement("button");
             removeButton.textContent = "Remove";
-            todoDiv.appendChild(removeButton);
+            todoButtons.appendChild(removeButton);
             removeButton.addEventListener("click", ()=>{removeTodo(todoDiv, projects, i, j)});
+
+            todoDiv.appendChild(todoButtons);
 
             list.appendChild(todoDiv);
         }

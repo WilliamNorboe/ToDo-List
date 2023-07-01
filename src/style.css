@@ -4,10 +4,10 @@
     box-sizing: border-box;
 }
 body{
-    background-color: #fffb10;
-    background-image: linear-gradient(90deg, #fffb10 0%, #b7ca5d 46%, #dece2b 100%);
+    /* background-color: #fffb10;
+    background-image: linear-gradient(90deg, #fffb10 0%, #b7ca5d 46%, #dece2b 100%); */
     font-family: 'Geologica', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    background: url('./notebook.jpg') no-repeat center center fixed; 
+    background: url('./background.png') no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -18,12 +18,15 @@ body{
     /* display: flex;
     flex-direction: column;
     align-items: center; */
-    
+    display: flex;
+    flex-direction: column;
+
 }
 
 
 #content>button{
     height: 100px;
+    width: 300px;
     font-size: 40px;
     padding: 20px;
     margin-bottom: 20px;
@@ -32,15 +35,26 @@ body{
 h1{
     font-weight: bold;
     font-size: 70px;
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-    font-family: sans; color: grey;
+    /* text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; */
+    /* font-family: sans; color: black; */
+    color: black;
+    background-color: palegoldenrod;
+    width:500px;
     text-align: center;
+    border-radius: 10px;
+    border: 2px solid black;
+    align-self: center;
 }
 h2{
     font-size: 55px;
     font-weight: normal;
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-    font-family: sans; color: grey;
+    /* text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; */
+    font-family: sans; color: black;
+    background-color: palegoldenrod;
+    border-radius: 10px;
+    border: 2px solid black;
+    width:min-content;
+    padding: 10px;
 }
 
 .projects{
@@ -60,6 +74,7 @@ h2{
     border-radius: 12px;
     padding: 10px;
     border: 3px solid black;
+    height:min-content;
 }
 
 ul{
@@ -74,6 +89,7 @@ ul{
     display: flex;
     justify-content: space-between;
     width: 100%;
+    gap: 10px;
     word-break: break-word;
     /* height: 100px;
     color: blue; */
@@ -88,7 +104,6 @@ ul{
 .pinfo{
     display: flex;
     flex-direction: column;
-    /* overflow-wrap: break-word; */
     flex-wrap: wrap;
     width: 100%;
     gap: 10px
@@ -139,4 +154,15 @@ textarea{
 button{
     border-radius: 100px;
     background-color: antiquewhite;
+}
+
+
+.projectButtons{
+    display: flex;
+    height: 40px;
+    gap: 10px;
+}
+.todoButtons{
+    display: flex;
+    gap: 5px;
 }
